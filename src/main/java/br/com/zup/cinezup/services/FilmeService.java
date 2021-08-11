@@ -2,12 +2,15 @@ package br.com.zup.cinezup.services;
 
 import br.com.zup.cinezup.dtos.AtorDTO;
 import br.com.zup.cinezup.dtos.FilmeDTO;
+import br.com.zup.cinezup.dtos.ResumoFilmeDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FilmeService {
@@ -40,6 +43,34 @@ public class FilmeService {
         filmes.add(filmeDTO);
         return filmeDTO;
     }
-
      */
+
+    public List<FilmeDTO> filtrarFilmesPorDistanciaDeData(int distnacia){
+        int anoInicial = LocalDate.now().getYear() - distnacia;
+
+        List<FilmeDTO> filmesFiltrada = new ArrayList<>();
+        for (FilmeDTO filme : filmes){
+            if(filme.getAnoDeLancamento().getYear() >= anoInicial){
+                filmesFiltrada.add(filme);
+            }
+        }
+
+        return filmesFiltrada;
+    }
+
+    public List<ResumoFilmeDTO> converterListaFilmeDTOparaListaResumoDTO(List<FilmeDTO> listaFilmes){
+        List<ResumoFilmeDTO> resumoFilmes = new ArrayList<>();
+
+        for(FilmeDTO filme : listaFilmes) {
+            ResumoFilmeDTO resumoFilmeDTO = new ResumoFilmeDTO();
+            BeanUtils.copyProperties(filme, resumoFilmeDTO);
+            resumoFilmes.add(resumoFilmeDTO);
+
+            /*
+            Exemplo com problema de LocalDate
+            resumoFilmes.add(objectMapper.convertValue(filme, ResumoFilmeDTO.class));
+            */
+        }
+        return resumoFilmes;
+    }
 }
