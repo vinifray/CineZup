@@ -22,4 +22,14 @@ public class AtorService {
             }
         }
     }
+
+    public AtorDTO buscarAtorPeloNome(String nome){
+        for (AtorDTO ator : atores){
+            if (ator.getNome().equals(nome)){
+                return ator;
+            }
+        }
+
+        throw new RuntimeException("Ator não encontrado");
+    }
 }
