@@ -11,6 +11,7 @@ public class AtorService {
     private List<AtorDTO> atores = new ArrayList<>();
 
     public void adicionarAtorNaLista(AtorDTO atorDTO){
+        verificarAtorDuplicado(atorDTO.getNome());
         atores.add(atorDTO);
     }
 
