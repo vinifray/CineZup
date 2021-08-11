@@ -13,4 +13,12 @@ public class AtorService {
     public void adicionarAtorNaLista(AtorDTO atorDTO){
         atores.add(atorDTO);
     }
+
+    public void verificarAtorDuplicado(String nome){
+        for (AtorDTO ator : atores){
+            if(ator.getNome().equals(nome)){
+                throw new RuntimeException("Ator já cadastrado");
+            }
+        }
+    }
 }
