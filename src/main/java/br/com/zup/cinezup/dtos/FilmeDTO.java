@@ -9,7 +9,7 @@ public class FilmeDTO {
     private String nome;
     private String sinopse;
     private LocalDate anoDeLancamento;
-    private List<AtorDTO> alenco;
+    private List<AtorDTO> elenco;
     private Categoria categoria;
 
     public FilmeDTO() {
@@ -39,12 +39,12 @@ public class FilmeDTO {
         this.anoDeLancamento = anoDeLancamento;
     }
 
-    public List<AtorDTO> getAlenco() {
-        return alenco;
+    public List<AtorDTO> getElenco() {
+        return elenco;
     }
 
-    public void setAlenco(List<AtorDTO> alenco) {
-        this.alenco = alenco;
+    public void setElenco(List<AtorDTO> elenco) {
+        this.elenco = elenco;
     }
 
     public Categoria getCategoria() {
