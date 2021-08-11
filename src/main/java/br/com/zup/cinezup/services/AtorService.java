@@ -10,4 +10,7 @@ import java.util.List;
 public class AtorService {
     private List<AtorDTO> atores = new ArrayList<>();
 
+    public void adicionarAtorNaLista(AtorDTO atorDTO){
+        atores.add(atorDTO);
+    }
 }
